@@ -100,7 +100,7 @@
 
 
     <Button
-        android:onClick="mainActivity"
+
         android:textColor="@color/white"
         android:id="@+id/button"
         android:layout_width="0dp"
@@ -140,7 +140,7 @@
         android:textColor="@color/teal_200"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:onClick="Login"
+        android:id="@+id/sign"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
