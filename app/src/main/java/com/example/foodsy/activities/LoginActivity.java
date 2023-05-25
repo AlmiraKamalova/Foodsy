@@ -30,8 +30,11 @@ public class LoginActivity extends AppCompatActivity {
 }*/
 package com.example.foodsy.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
         emailEditText = findViewById(R.id.editText2);
         passwordEditText = findViewById(R.id.editText3);
+        passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         loginButton = findViewById(R.id.button);
         registerTextView = findViewById(R.id.reg);
@@ -88,24 +92,53 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString().trim();
 
         if (email.isEmpty()) {
-            emailEditText.setError("Введите email");
+            emailEditText.setError("Enter email");
+            emailEditText.requestFocus();
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            emailEditText.setError("Enter a valid email address");
             emailEditText.requestFocus();
             return;
         }
 
         if (password.isEmpty()) {
-            passwordEditText.setError("Введите пароль");
+            passwordEditText.setError("Enter password");
+            passwordEditText.requestFocus();
+            return;
+        }
+
+        if (password.length() < 4) {
+            passwordEditText.setError("Password must be at least 4 characters long");
             passwordEditText.requestFocus();
             return;
         }
 
         User user = databaseHelper.getUserByEmail(email);
         if (user != null && user.getPassword().equals(password)) {
+            // После успешной проверки учетных данных пользователя
+
+            // Сохраняем данные пользователя в SharedPreferences
+            SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("userName", user.getName());
+            editor.putString("userEmail", user.getEmail());
+            editor.apply();
+
+            // Переходим в MainActivity
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         } else {
-            Toast.makeText(LoginActivity.this, "Неверный email или пароль", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_LONG).show();
         }
     }
+
+    private boolean isValidEmail(String email) {
+        // Add your email validation logic here
+        // Return true if the email is valid, false otherwise
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
 }
+
 

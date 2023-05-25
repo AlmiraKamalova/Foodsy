@@ -154,15 +154,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<CartModel> getAllCartItems() {
         List<CartModel> cartItems = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + TABLE_CART;
+        String selectQuery = "SELECT * FROM " + TABLE_CART_ITEMS;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
-                int image = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CART_IMAGE));
-                String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CART_NAME));
-                String price = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CART_PRICE));
-                String rating = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CART_RATING));
+                int image = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CART_ITEM_IMAGE));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CART_ITEM_NAME));
+                String price = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CART_ITEM_PRICE));
+                String rating = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CART_ITEM_RATING));
                 CartModel cartItem = new CartModel(image, name, price, rating);
                 cartItems.add(cartItem);
             } while (cursor.moveToNext());
@@ -171,6 +171,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return cartItems;
     }
+
 
     public List<DailyMealModel> getAllDailyMeals() {
         List<DailyMealModel> dailyMeals = new ArrayList<>();

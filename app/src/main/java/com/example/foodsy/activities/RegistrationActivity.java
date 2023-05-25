@@ -32,6 +32,7 @@ package com.example.foodsy.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,7 +62,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
         nameEditText = findViewById(R.id.editText);
         emailEditText = findViewById(R.id.editText2);
+
         passwordEditText = findViewById(R.id.editText3);
+        passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
         registerButton = findViewById(R.id.button);
         loginTextView = findViewById(R.id.sign);
 
@@ -83,6 +87,7 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
+
     private void register() {
         String username = nameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
@@ -94,12 +99,28 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Введите адрес электронной почты", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            Toast.makeText(this, "Enter a valid email address", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Enter your email address", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (password.length() < 4) {
+            Toast.makeText(this, "Password must be at least 4 characters long", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        boolean userExists = databaseHelper.checkUser(email, password);
+        if (userExists) {
+            Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -112,5 +133,11 @@ public class RegistrationActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Registration error", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private boolean isValidEmail(String email) {
+        // Add your email validation logic here
+        // Return true if the email is valid, false otherwise
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }

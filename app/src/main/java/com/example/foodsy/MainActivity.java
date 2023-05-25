@@ -1,8 +1,11 @@
 package com.example.foodsy;
 
-
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -16,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,22 +27,32 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
+        // Получаем данные пользователя из SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        String userName = sharedPreferences.getString("userName", "");
+        String userEmail = sharedPreferences.getString("userEmail", "");
+
+        // Получаем ссылки на TextView с идентификаторами man_name и man_email
+        TextView manNameTextView = navigationView.getHeaderView(0).findViewById(R.id.man_name);
+        TextView manEmailTextView = navigationView.getHeaderView(0).findViewById(R.id.man_email);
+
+        // Устанавливаем текст для TextView
+        manNameTextView.setText(userName);
+        manEmailTextView.setText(userEmail);
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_daily_meal, R.id.nav_favourite, R.id.nav_my_cart)
                 .setDrawerLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
