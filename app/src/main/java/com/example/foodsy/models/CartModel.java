@@ -1,21 +1,28 @@
 package com.example.foodsy.models;
 
 public class CartModel {
-
+    private int id;
     int image;
     String name;
     String price;
     String rating;
 
 
-    public CartModel(int image, String name, String price, String rating) {
+    public CartModel( int image, String name, String price, String rating) {
+
         this.image = image;
         this.name = name;
         this.price = price;
         this.rating = rating;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getImage() {
         return image;
     }

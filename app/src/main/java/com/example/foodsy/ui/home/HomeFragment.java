@@ -4,19 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodsy.DatabaseHelper;
 import com.example.foodsy.R;
 import com.example.foodsy.adapters.HomeHorAdapter;
 import com.example.foodsy.adapters.HomeVerAdapter;
 import com.example.foodsy.adapters.UpdateVerticalRec;
-import com.example.foodsy.databinding.FragmentHomeBinding;
+import com.example.foodsy.models.CartModel;
 import com.example.foodsy.models.HomeHorModel;
 import com.example.foodsy.models.HomeVerModel;
 
@@ -34,8 +33,16 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
     HomeVerAdapter homeVerAdapter;
 
 
+    ///////////
+    DatabaseHelper databaseHelper;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+
+       ///////////
+        databaseHelper = new DatabaseHelper(getActivity());
+
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -45,11 +52,12 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
         /////////////////////////////////Horizontal RecycleView
         homeHorModelList = new ArrayList<>();
 
-        homeHorModelList.add(new HomeHorModel(R.drawable.pizza,"Pizza"));
-        homeHorModelList.add(new HomeHorModel(R.drawable.hamburger,"HamBurger"));
-        homeHorModelList.add(new HomeHorModel(R.drawable.fried_potatoes,"Fries"));
-        homeHorModelList.add(new HomeHorModel(R.drawable.ice_cream,"Ice Cream"));
-        homeHorModelList.add(new HomeHorModel(R.drawable.sandwich,"Sandwich"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.brearfastt,"Breakfast"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.soup,"Soup"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.main_dish,"Main dish"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.dessert,"Dessert"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.salad,"Salad"));
+
 
         homeHorAdapter = new HomeHorAdapter(this,getActivity(),homeHorModelList);
         homeHorizontalRec.setAdapter(homeHorAdapter);
@@ -73,9 +81,20 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
     @Override
     public void callBack(int position, ArrayList<HomeVerModel> list) {
 
+        ////////////////
+        HomeVerModel selectedItem = list.get(position);
+        databaseHelper.addCartItem(new CartModel(selectedItem.getImage(), selectedItem.getName(), selectedItem.getPrice(), selectedItem.getRating()));
+
+
+
         homeVerAdapter = new HomeVerAdapter(getContext(),list);
         homeVerAdapter.notifyDataSetChanged();
         homeVerticalRec.setAdapter(homeVerAdapter);
 
     }
+
+    /////////
+    // Переменная для хранения выбранных товаров
+    List<HomeVerModel> selectedItems = new ArrayList<>();
+
 }

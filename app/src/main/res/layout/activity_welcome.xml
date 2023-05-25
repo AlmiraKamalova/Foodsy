@@ -22,9 +22,10 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/lobster"
         android:text="@string/my_restaurant_app"
+
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="33sp"
+        android:textSize="65sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +39,9 @@
         android:text="@string/Dobav"
         android:textAlignment="center"
         android:textColor="#FBFBFB"
-
-        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/lobster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />

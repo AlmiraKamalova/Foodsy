@@ -50,6 +50,7 @@
         android:layout_marginTop="5dp"/>
 
     <TextView
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/martel"
@@ -58,9 +59,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"/>
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <TextView
+        android:id="@+id/total_cost_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="$180"
@@ -70,6 +72,17 @@
         app:layout_constraintBottom_toTopOf="@id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view2"/>
+
+    <ImageButton
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="delete"
+        android:src="@drawable/baseline_delete_24"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cart_rec" />
 
     <Button
         android:id="@+id/button"
@@ -88,9 +101,5 @@
 
         app:layout_constraintVertical_bias=".7"
         app:layout_constraintWidth_percent=".8" />
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

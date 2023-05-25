@@ -110,6 +110,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
+                    android:id="@+id/add_to_cart_button"
                     android:layout_width="97dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/martel"

@@ -89,7 +89,7 @@ public class RegistrationActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString().trim();
 
         if (TextUtils.isEmpty(username)) {
-            Toast.makeText(this, "Введите имя пользователя", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter username", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -99,18 +99,18 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Введите пароль", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter your email address", Toast.LENGTH_SHORT).show();
             return;
         }
 
         User user = new User(username, email, password);
         boolean registrationSuccessful = databaseHelper.addUser(user);
         if (registrationSuccessful) {
-            Toast.makeText(this, "Регистрация успешна", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
             startActivity(intent);
         } else {
-            Toast.makeText(this, "Ошибка регистрации", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Registration error", Toast.LENGTH_SHORT).show();
         }
     }
 }

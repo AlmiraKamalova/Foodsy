@@ -24,7 +24,7 @@
         android:fontFamily="@font/martel"
         android:text="Dinner"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageview"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +36,8 @@
         android:id="@+id/description_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+
         android:fontFamily="@font/martel"
         android:text="Description Description Description"
         android:textColor="@color/white"
