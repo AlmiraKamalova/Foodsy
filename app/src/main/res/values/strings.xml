@@ -13,10 +13,10 @@
     <string name="my_restaurant_app">FoodSy</string>
     <string name="Dobav">Welcome to my application</string>
     <string name="sign_in">Sign in</string>
-    <string name="restaurantapp">my_restaurant_app</string>
+    <string name="restaurantapp">FoodSy</string>
     <string name="register">register</string>
-    <string name="full_name">full_name</string>
-    <string name="email_addres">email_addres</string>
+    <string name="full_name">Full name</string>
+    <string name="email_addres">Email addres</string>
     <string name="password">Password</string>
     <string name="already_registered">Already Registered?</string>
     <string name="don_t_have_an_account">Don`t Have An Account?</string>

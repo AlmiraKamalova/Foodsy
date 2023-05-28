@@ -15,14 +15,14 @@
         <ImageView
             android:id="@+id/ver_img"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="center"
+            android:layout_height="270dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/dinner"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"

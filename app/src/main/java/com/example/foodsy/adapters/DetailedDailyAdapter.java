@@ -80,6 +80,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -125,6 +126,7 @@ public class DetailedDailyAdapter extends RecyclerView.Adapter<DetailedDailyAdap
             public void onClick(View v) {
                 // Добавление продукта в корзину при нажатии на кнопку "Добавить в корзину"
                 databaseHelper.addToCart(detailedDailyModel);
+                Toast.makeText(context, "Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
     }

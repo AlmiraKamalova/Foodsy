@@ -126,6 +126,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:id="@+id/reg"
+        android:padding="13dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
