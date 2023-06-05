@@ -65,13 +65,11 @@ public class FirstFragment extends Fragment {
         recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         featuredVerModelList = new ArrayList<>();
 
-        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver1, "Featured 1", "Description 1", "4.8", "10:00 - 8:00"));
-        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver2, "Featured 2", "Description 2", "4.8", "10:00 - 8:00"));
-        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver3, "Featured 3", "Description 3", "4.8", "10:00 - 8:00"));
+        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver1, "Oatmeal with berries", "a classic breakfast recipe that is easy and quick to prepare in the morning", "", "15 min"));
+        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver2, "Egg sandwiches", "This sandwich is great for a quick bite.", "", "10:00 - 8:00"));
+        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver3, "Pancake", "Pancakes with syrup and fruits", "", "10:00 - 8:00"));
 
-        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver1, "Featured 1", "Description 1", "4.8", "10:00 - 8:00"));
-        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver2, "Featured 2", "Description 2", "4.8", "10:00 - 8:00"));
-        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver3, "Featured 3", "Description 3", "4.8", "10:00 - 8:00"));
+
 
 
         featuredVerAdapter = new FeaturedVerAdapter(featuredVerModelList);

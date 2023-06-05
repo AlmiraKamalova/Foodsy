@@ -51,9 +51,9 @@ public class SecondFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         featuredModelList = new ArrayList<>();
 
-        featuredModelList.add(new FeaturedModel(R.drawable.fav1,"Featured 1", "Description 1"));
-        featuredModelList.add(new FeaturedModel(R.drawable.fav2,"Featured 2", "Description 2"));
-        featuredModelList.add(new FeaturedModel(R.drawable.fav3,"Featured 3", "Description 3"));
+        featuredModelList.add(new FeaturedModel(R.drawable.fav1,"Oatmeal with berries", ""));
+        featuredModelList.add(new FeaturedModel(R.drawable.fav2,"Burgers", ""));
+        featuredModelList.add(new FeaturedModel(R.drawable.fav3,"Paste", ""));
 
         featuredAdapter = new FeaturedAdapter(featuredModelList);
         recyclerView.setAdapter(featuredAdapter);
@@ -63,9 +63,9 @@ public class SecondFragment extends Fragment {
         recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         featuredVerModelList = new ArrayList<>();
 
-        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver1, "Featured 1", "Description 1", "4.8", "10:00 - 8:00"));
-        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver2, "Featured 2", "Description 2", "4.8", "10:00 - 8:00"));
-        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver3, "Featured 3", "Description 3", "4.8", "10:00 - 8:00"));
+        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver1, "Oatmeal with berries", "A classic breakfast recipe that is easy and quick to prepare in the morning", "", "15 min"));
+        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver2, "Egg sandwiches", "This sandwich is great for a quick bite.", "", "15 min"));
+        featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver3, "Pancake", "Pancakes with syrup and fruits", "", "15 min"));
 
         featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver1, "Featured 1", "Description 1", "4.8", "10:00 - 8:00"));
         featuredVerModelList.add(new FeaturedVerModel(R.drawable.ver2, "Featured 2", "Description 2", "4.8", "10:00 - 8:00"));
