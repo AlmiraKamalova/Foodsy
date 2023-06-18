@@ -16,12 +16,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class Map extends AppCompatActivity implements OnMapReadyCallback {
+public class Map extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
     private GoogleMap mMap;
     private EditText addressEditText;
     private Button showAddressButton;
-
     private Button orderButton;
 
     @Override
@@ -35,7 +34,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
         addressEditText = findViewById(R.id.address_edit_text);
         showAddressButton = findViewById(R.id.show_address_button);
-
+        orderButton = findViewById(R.id.order_button);
 
         showAddressButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +48,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
                 }
             }
         });
-        Button orderButton = findViewById(R.id.order_button);
+
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,9 +56,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
                 startActivity(receiptIntent);
             }
         });
-
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -71,6 +68,21 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
         // Enable zoom controls
         mMap.getUiSettings().setZoomControlsEnabled(true);
+
+        // Set the map click listener
+        mMap.setOnMapClickListener(this);
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        mMap.clear(); // Clear all previous markers on the map
+
+        // Add a marker at the clicked position
+        mMap.addMarker(new MarkerOptions().position(latLng));
+
+        // Perform actions with the selected building
+        // For example, save the position or display building details
+        // Your code here...
     }
 
     private void addMarkerOnMap(String address) {
