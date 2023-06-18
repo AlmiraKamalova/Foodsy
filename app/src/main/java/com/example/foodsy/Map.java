@@ -3,6 +3,8 @@ package com.example.foodsy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
 
 public class Map extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
@@ -85,14 +90,28 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
         // Your code here...
     }
 
-    private void addMarkerOnMap(String address) {
-        // Geocode the address to get the LatLng coordinates
-        // You need to implement the geocoding logic here using a geocoding service or API of your choice
-        // Once you have the LatLng coordinates, you can add a marker to the map
+    private void addMarkerOnMap(String streetName) {
+        Geocoder geocoder = new Geocoder(this); // Создаем экземпляр Geocoder
 
-        // Example code for adding a marker
-        LatLng latLng = new LatLng(37.7749, -122.4194); // Example: San Francisco coordinates
-        mMap.addMarker(new MarkerOptions().position(latLng).title(address));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        try {
+            List<Address> addresses = geocoder.getFromLocationName(streetName, 1); // Получаем список адресов по заданному имени улицы
+
+            if (!addresses.isEmpty()) {
+                Address firstAddress = addresses.get(0); // Получаем первый адрес из списка
+                double latitude = firstAddress.getLatitude(); // Получаем широту
+                double longitude = firstAddress.getLongitude(); // Получаем долготу
+                LatLng latLng = new LatLng(latitude, longitude); // Создаем объект LatLng с полученными координатами
+
+                mMap.addMarker(new MarkerOptions().position(latLng).title(streetName)); // Добавляем маркер на карту
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15)); // Перемещаем камеру к указанным координатам
+            } else {
+                Toast.makeText(this, "Street not found", Toast.LENGTH_SHORT).show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+
 }

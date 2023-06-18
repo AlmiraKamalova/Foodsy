@@ -65,7 +65,7 @@ public class ReceiptActivity extends AppCompatActivity {
             double price = Double.parseDouble(cartItem.getPrice());
             totalCost += price;
 
-            sb.append("Item: ").append(cartItem.getName()).append("\n");
+            sb.append("- ").append(cartItem.getName()).append("\n");
             sb.append("Price: ").append(cartItem.getPrice()).append("\n");
             sb.append("Rating: ").append(cartItem.getRating()).append("\n\n");
         }
