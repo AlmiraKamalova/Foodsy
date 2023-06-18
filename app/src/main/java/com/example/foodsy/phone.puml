@@ -1,0 +1,51 @@
+@startuml
+skinparam fontSize 88
+[*] --> Idle
+
+state Idle {
+    [*] --> Home
+    Home --> MyCartFragment: View Cart
+    Home --> DailyMealFragment: View Daily Meals
+    Home --> FavouriteFragment: View Favorites
+    Home --> LoginActivity: Login
+    Home --> RegistrationActivity: Register
+}
+
+state DailyMealFragment {
+    [*] --> DisplayMeals
+    DisplayMeals --> DetailedDailyMealActivity: View Details
+}
+
+state FavouriteFragment {
+    [*] --> DisplayFavorites
+    DisplayFavorites --> DetailedDailyMealActivity: View Details
+}
+
+state MyCartFragment {
+    [*] --> DisplayCart
+    DisplayCart --> DetailedDailyMealActivity: View Details
+}
+
+state LoginActivity {
+    [*] --> Authenticate
+    Authenticate --> Home: Login Successful
+}
+
+state RegistrationActivity {
+    [*] --> CreateAccount
+    CreateAccount --> Home: Account Created
+}
+
+state DetailedDailyMealActivity {
+    [*] --> ViewDetails
+    ViewDetails --> ReceiptActivity: Place Order
+}
+
+state ReceiptActivity {
+    [*] --> GenerateReceipt
+    GenerateReceipt --> Home: Return to Home
+}
+
+Home --> ReceiptActivity: View Receipt
+
+@enduml

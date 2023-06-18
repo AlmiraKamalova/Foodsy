@@ -68,6 +68,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodsy.Map;
 import com.example.foodsy.R;
 import com.example.foodsy.ReceiptActivity;
 import com.example.foodsy.adapters.CartAdapter;
@@ -129,7 +130,7 @@ public class MyCartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Обработка нажатия на кнопку "Make Order"
-                startActivity(new Intent(getActivity(), ReceiptActivity.class));
+                startActivity(new Intent(getActivity(), Map.class));
             }
         });
 
