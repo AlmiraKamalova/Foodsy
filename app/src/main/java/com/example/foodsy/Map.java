@@ -57,7 +57,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent receiptIntent = new Intent(Map.this, ReceiptActivity.class);
+                Intent receiptIntent = new Intent(Map.this, PaymentActivity.class);
                 startActivity(receiptIntent);
             }
         });
